@@ -1,0 +1,77 @@
+.dropdown {
+	position: relative;
+
+	.dropdown__button {
+		position: relative;
+
+		&:after {
+			padding-left: 0.5rem;
+
+			content: "\25BE";
+		}
+	}
+
+	.dropdown__list {
+		position: absolute;
+		top: 100%;
+		z-index: 1;
+
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 0;
+		margin-top: -0.75rem; //remove mardin between button and list
+		overflow: hidden;
+
+		text-align: left;
+
+		background: #ffffff;
+		border: solid 1px $color-tertiary;
+		border-color: transparent;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+
+		transition: all 400ms ease-in;
+
+		@include respond-to("small") {
+			padding-top: 1rem;
+
+			border: 0;
+
+			transition: none;
+		}
+
+		.dropdown__item {
+			display: block;
+			width: 100%;
+			margin-bottom: 0;
+
+			font-weight: bold;
+			font-size: 1.5rem;
+
+			list-style: none;
+
+			@include respond-to("small") {
+				@include button-clear();
+				@include button-menu-item();
+			}
+
+			> * {
+				padding: 1em;
+
+				@include respond-to("small") {
+					padding: 0 0 0.5em 0.5em;
+				}
+			}
+		}
+	}
+
+	.dropdown__list:hover,
+	.dropdown__list:focus,
+	.dropdown__list:active,
+	.dropdown__button:hover + .dropdown__list {
+		max-height: 800px;
+
+		border-color: $color-tertiary;
+	}
+}

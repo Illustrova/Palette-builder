@@ -1,0 +1,14 @@
+@mixin tooltip() {
+	position: absolute;
+	top: 100%;
+	left: 100%;
+	z-index: 1000;
+
+	display: block;
+	width: auto;
+	height: 2em;
+	padding: 0.5em;
+
+	border-radius: 5px;
+	opacity: 0.8;
+}

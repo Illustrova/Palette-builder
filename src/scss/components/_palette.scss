@@ -1,0 +1,328 @@
+.palette {
+	display: flex;
+	height: 100%;
+
+	&__header {
+		font-weight: bold;
+		font-size: 1.5rem;
+		text-align: center;
+
+		border-bottom: solid 2px black;
+
+		@include respond-to("small-or-touch") {
+			display: none;
+		}
+	}
+
+	&__subheader {
+		text-align: center;
+
+		border-bottom: solid 1px black;
+
+		@include respond-to("small-or-touch") {
+			display: none;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+	}
+
+	&__group {
+		flex: 1;
+		flex-basis: 20%;
+		margin-bottom: 0.5em;
+
+		@include respond-to("small-or-touch") {
+			flex-direction: column;
+		}
+
+		&-header {
+			display: flex;
+			flex: 0 0 5%;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			min-width: 40px;
+			max-width: 5%;
+			margin-left: 0;
+			padding: 0.75rem;
+			overflow: auto;
+
+			@include respond-to("small-or-touch") {
+				flex-direction: row;
+				justify-content: center;
+				align-items: flex-end;
+				max-width: 100%;
+				margin-top: 2em;
+				margin-bottom: 1em;
+				padding: 0;
+			}
+		}
+
+		&-items {
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+
+			@include respond-to("small-or-touch") {
+				flex-direction: column;
+			}
+		}
+
+		&-title {
+			display: block;
+			max-width: 4em !important; //override milligram column max-width
+			margin-top: 2em;
+
+			font-weight: bold;
+			font-size: 1.25em;
+			font-family: $font-condensed;
+			white-space: pre-wrap;
+			text-align: center;
+			text-transform: uppercase;
+
+			@include respond-to("small-or-touch") {
+				margin: 0;
+				margin-left: 0.5em;
+
+				font-size: 2em;
+			}
+
+			@include respond-to("medium-only") {
+				font-size: 1em;
+			}
+		}
+
+		&-icon {
+			display: flex;
+			// width: 100%;
+			max-width: 60px;
+
+			svg {
+				max-width: 100%;
+				height: 100%;
+
+				fill: url(#primary-gradient) $color-primary;
+			}
+
+			@include respond-to("small-or-touch") {
+				width: auto;
+				margin: 0;
+			}
+		}
+	}
+
+	&__family {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+
+		@include respond-to("small-or-touch") {
+			flex-direction: row;
+			flex-wrap: wrap;
+			margin-bottom: 1em;
+
+			&:before {
+				flex-basis: 100%;
+				order: -10;
+				margin-right: auto;
+				margin-bottom: 0.5em;
+				padding-bottom: 0.25em;
+				padding-left: 1.5em;
+
+				font-weight: bold;
+				font-style: italic;
+
+				border-bottom: solid $color-primary 2px;
+				border-image: linear-gradient(
+					90deg,
+					$color-quaternary 0%,
+					$color-primary 30%,
+					$color-tertiary 45%,
+					white 50%,
+					white 100%
+				)
+					1;
+				content: attr(data-family);
+			}
+
+			&:after {
+				display: block;
+				flex-grow: 0;
+				order: -1;
+				max-width: 2em;
+
+				font-weight: 300;
+
+				font-size: 1.25em;
+				text-align: center;
+				text-orientation: upright;
+				content: "S  W";
+
+				writing-mode: vertical-rl;
+			}
+		}
+	}
+
+	&__shift {
+		position: relative;
+
+		display: flex;
+		flex: 2;
+
+		&[data-shift="up"],
+		&[data-shift="down"] {
+			flex: 1;
+		}
+
+		@include respond-to("small-or-touch") {
+			flex-direction: column;
+		}
+	}
+
+	&__item {
+		position: relative;
+
+		flex: 1;
+		min-height: 3.5rem;
+
+		margin: 0.2em;
+
+		font-weight: normal;
+		font-size: 0.85em;
+
+		font-family: $font-monospace;
+		line-height: 1.1;
+
+		border: dashed 1px $color-tertiary;
+		border-radius: 5px;
+
+		cursor: pointer;
+
+		@include respond-to("small-or-touch") {
+			min-height: 4rem;
+
+			[data-shift] &:before {
+				position: absolute;
+				bottom: 0.25em;
+				left: 0.25em;
+
+				color: $color-tertiary;
+				font-size: 1em;
+			}
+
+			[data-shift="up"] &:before {
+				content: "\2B06";
+			}
+
+			[data-shift="down"] &:before {
+				content: "\2B07";
+			}
+		}
+
+		&--active {
+			border: solid 1px $color-primary;
+			box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4);
+		}
+
+		&[data-color-hexa^="#"] {
+			/* Item with selected color */
+			border-style: double;
+		}
+
+		&:after {
+			position: absolute;
+			bottom: 50%;
+			left: 0;
+
+			width: 100%;
+			// font-weight: bold;
+			letter-spacing: 0.1rem;
+
+			text-align: center;
+			text-transform: uppercase;
+
+			transform: translateY(50%);
+		}
+	}
+
+	&[data-format="hexa"] .palette__item {
+		&:after {
+			content: attr(data-color-hexa);
+
+			@include respond-to("small") {
+			}
+
+			@include respond-to("medium-only") {
+				display: none;
+			}
+		}
+
+		&[data-color-hexa^="#"]:hover:after {
+			@include respond-to("medium-only") {
+				@include tooltip();
+				color: $color-tertiary;
+				line-height: 1em;
+
+				background: $color-overlay;
+
+				transform: unset;
+			}
+		}
+	}
+
+	@each $format in "rgba", "hsla" {
+		&[data-format="#{$format}"] .palette__item {
+			&:after {
+				content: attr(data-color-#{$format});
+			}
+		}
+	}
+
+	&[data-format="rgba"] .palette__item,
+	&[data-format="hsla"] .palette__item {
+		@include respond-to("small") {
+			font-weight: normal;
+			font-size: 0.85em;
+		}
+
+		@include respond-to("medium-large-only") {
+			&:after {
+				display: none;
+			}
+
+			&[data-color-rgba^="rgba"]:hover:after,
+			&[data-color-hsla^="hsla"]:hover:after {
+				@include tooltip();
+				width: 11em;
+				height: 3em;
+
+				color: $color-tertiary;
+				font-weight: normal;
+				font-size: 0.85em;
+				line-height: 1em;
+				text-align: center;
+
+				background: $color-overlay;
+
+				transform: unset;
+			}
+		}
+	}
+
+	.palette__family:last-child .palette__item:last-child {
+		/* adjust position of tooltip on the right */
+
+		&:hover:after {
+			@include respond-to("medium-large-only") {
+				left: 0;
+
+				transform: translateX(-100%);
+			}
+		}
+	}
+}

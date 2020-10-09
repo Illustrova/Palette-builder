@@ -1,0 +1,6 @@
+{
+  "optimizers": {
+    "*.{png,jpg,jpeg,svg,...}": ["@parcel/optimizer-imagemin"]
+  },
+  "reporters": ["@parcel/reporter-cli"]
+}

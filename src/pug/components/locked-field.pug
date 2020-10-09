@@ -1,0 +1,12 @@
+mixin locked-field(name)
+	.locked-field
+		label.sr-only(for=name) Change file name
+		input.input.locked-field__input(disabled, type="text", id=name)&attributes(attributes)
+		button.button.button-icon.button-clear.button--small.locked-field__button(
+			data-action=TOGGLE_DISABLED,
+			data-target='#' + name
+		)
+			svg.icon-lock(width="40", height="40")
+				use(href="icons/lock.svg")
+			svg.icon-unlock(width="40", height="40")
+				use(href="icons/unlock.svg")

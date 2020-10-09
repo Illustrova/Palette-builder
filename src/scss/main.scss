@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import "abstracts/mixins/mixins";
+@import "abstracts/variables";
+
+// 2. Vendors
+@import "vendors/normalize";
+@import "milligram/src/milligram";
+@import "vendors/prism";
+
+// 3. Base stuff
+@import "base/base";
+@import "base/fonts";
+@import "base/typography";
+@import "base/helpers";
+
+// 4. Layout-related sections
+@import "layout/content";
+@import "layout/header";
+@import "layout/footer";
+
+// 5. Components
+@import "components/button";
+@import "components/button-group";
+@import "components/colorpicker";
+@import "components/dropdown";
+@import "components/nav";
+@import "components/modal";
+@import "components/palette";
+@import "components/burger";
+@import "components/locked-field";
+@import "components/form";
+@import "components/switch";
+@import "components/collapsible";
+
+// 6. Themes
+@import "themes/pickr-custom";

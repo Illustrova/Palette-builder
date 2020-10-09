@@ -1,0 +1,44 @@
+mixin nav
+	nav.nav.container.container--wide
+		.nav__group.nav__group--left
+			.button-group.nav__item
+				- const activeRadio = 'hexa';
+				each format in ["hexa", "rgba", "hsla"]
+					- let active = format === activeRadio ? true : false;
+					input.sr-only(
+						id=`display-${format}`,
+						type="radio",
+						name="colorFormat",
+						value=format,
+						checked=active,
+						data-action=SET_COLOR_FORMAT,
+						data-action-data=format
+					)
+					label.button.button-outline(for=`display-${format}`)= format
+		input#hidden-menu.burger-checkbox.sr-only(
+			type="checkbox",
+			aria-label="expand menu"
+		)
+		label.button.button-clear.button--small.burger.burger--active(
+			for="hidden-menu"
+		)
+		.nav__group.nav__group--right.nav__group--collapse-sm
+			button.nav__item.button.button-clear(data-action=RESET_PALETTE) RESET
+			input#file-import.sr-only(
+				type="file",
+				data-action=IMPORT_FILE,
+				data-target="#file-import"
+			)
+			label.nav__item.button(
+				for="file-import",
+				aria-label="upload file with variables to display and edit existing palette"
+			) IMPORT
+			.nav__item.dropdown
+				button.button.dropdown__button(for="exportDropdown") EXPORT
+				ul.dropdown__list
+					each format in FILEFORMATS
+						li.dropdown__item
+							button.button--link.button-export(
+								data-action=PALETTE_EXPORT,
+								data-action-data=format
+							)= format == 'styl' ? 'STYLUS' : format.toUpperCase()

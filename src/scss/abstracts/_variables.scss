@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// COLORS
+$color-primary: #18abb8;
+$color-secondary: darken($color-primary, 20%);
+$color-tertiary: #d1d1d1;
+$color-quaternary: rgb(226, 197, 9);
+$color-text: rgb(34, 34, 34);
+$color-overlay: #383e5d;
+
+// TYPOGRAPHY
+$font-base: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-condensed: "Roboto Condensed", "Roboto", sans-serif;
+$font-monospace: "Roboto Mono";
+$font-size: 1.4em;
+$line-height: 1.4;
+
+// BREAKPOINTS
+// prettier-ignore
+$breakpoints: (
+	// stack columns for tablet/mobile
+	"small": "(max-width: 680px)",
+	// stack columns for tablet/mobile
+	"small-or-touch": "(max-width: 680px), (hover: none) and (max-width: 1400px)",
+	// hex colors fit in cells
+	"medium": "(max-width: 1250px)",
+	"medium-only": "(min-width: 680px) and (max-width: 1250px)",
+	// hex colors fit in cells OR any touch device
+	"medium-or-touch": "(max-width: 1250px), (hover: none)",
+	// rgba or hsl fit in cells
+	"large": "(max-width: 1400px)",
+	"medium-large-only": "(min-width: 680px) and (max-width: 1400px)",
+	// if less, body should scroll
+	"small-height": "(max-height: 900px)",
+	// rgba or hsl fit in cells
+	"large-height": "(max-height: 1400px)"
+) !default;
+
+// Sizes
+$header-height: 6rem;
+$header-height-sm: 4rem;
+$footer-height: 2rem;
+
+$palette-header-font-size: $font-size;
+$palette-subheader-font-size: 1.5rem;
+
+// Gradients
+
+#primary-gradient {
+	--color-stop-1: #{darken($color-primary, 10%)};
+	--color-stop-2: #{$color-primary};
+	--color-stop-3: #{lighten($color-primary, 10%)};
+}

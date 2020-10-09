@@ -1,0 +1,96 @@
+include ./button.pug
+
+mixin modal
+	.modal(data-action=MODAL_HIDE)&attributes(attributes)
+		.modal__body.modal__body--error
+			.modal__message
+				.modal__heading Nothing to export yet :(
+				.modal__text Add some colors to your palette first.
+			button.modal__button.button(data-action=MODAL_HIDE) OK
+		.modal__body
+			.modal__header.nav
+				.nav__group.nav__group--left
+					+locked-field("filename").modal__filename(
+						value="colors.scss",
+						disabled,
+						data-action=CHANGE_FILENAME
+					)
+				.nav__group.nav__group--right
+					.nav__item.dropdown
+						+button-icon("settings").button-outline(
+							title="Show settings",
+							data-action=TOGGLE_COLLAPSIBLE,
+							data-target="#settings"
+						)
+					.nav__item
+						+button-icon("copy")(
+							title="Copy output",
+							data-action=COPY_OUTPUT,
+							data-target=MODAL_CODE
+						)
+					.nav__item
+						+button-icon("download")(
+							title="Save as file",
+							data-action=SAVE_OUTPUT,
+							data-target=MODAL_CODE
+						)
+					.nav__item
+						+button-icon("close").button-clear(
+							title="Close",
+							data-action=MODAL_HIDE
+						)
+			.modal__content
+				#settings.modal__settings.collapsible
+					form.form.row
+						.column.column-33
+							.form__group
+								.form__item
+									label.form__label(for="useTabs") Spaces
+									label.switch(for="useTabs")
+										input#useTabs.sr-only(
+											type="checkbox",
+											name="useTabs",
+											data-action=CHANGE_OPTIONS
+										)
+										.switch__slider
+									label.form__label(for="useTabs") Tabs
+								.form__item
+									label(for="numSpaces") 
+										span.form__label Indent size:
+										input#numSpaces.input(
+											type="number",
+											name="numSpaces",
+											min=2,
+											max=8,
+											step="2",
+											value="2",
+											data-action=CHANGE_OPTIONS
+										)
+						.column
+							.form__group
+								.form__item
+									label.label-inline(for="hexaToRgba")
+										input#hexaToRgba(
+											type="checkbox",
+											name="hexaToRgba",
+											value="true",
+											checked,
+											data-action=CHANGE_OPTIONS
+										)
+										span.form__label Always convert HEXA values to RGBA
+								.form__item
+									label.label-inline(for="hexLowerCase")
+										input#hexLowerCase(
+											type="checkbox",
+											name="hexLowerCase",
+											value="true",
+											checked,
+											data-action=CHANGE_OPTIONS
+										)
+										span.form__label HEX values in lowercase
+				pre.modal__code(
+					data-label="my-label-btn",
+					data-src="../../../node_modules/prismjs/plugins/toolbar/prism-toolbar.js",
+					data-download-link,
+					data-download-link-label="Download this file"
+				)

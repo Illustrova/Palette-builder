@@ -1,0 +1,76 @@
+
+Todo:
+  ☐ Activate buttons on enter
+  ✔ clear palette i navbar @done(20-10-02 11:59)
+	☐ Promt to clear palette on import
+	☐ test import named colors, short hex
+	☐ save l0calstorage ask before closing page
+	Add main color row
+	✔ HAndle parsing/import errors (no vars, unreadable file etc) @done(20-10-02 11:59)
+	✔ Proper modal @done(20-10-02 11:59)
+	✔ fix import input 2nd time @done(20-10-02 11:59)
+	
+	✔ Fix export @done(20-09-24 17:25)
+	✔ fix rgba hsla values rounding @done(20-09-24 17:25)
+	✔ fix indents @done(20-09-24 12:05)
+	✔ fix stylesheets hex to rgba @done(20-09-24 12:05)
+	
+			// if (options.elementAsScope) {
+		// 	console.log("ind", indent);
+		// 	return Object.entries(data)
+		// 		.map(([element, value]) => {
+		// 			return (
+		// 				`.${element} ${braceOpen}\n` +
+		// 				`${createDeclarations(value, "", indent)}` +
+		// 				`${braceClose}\n\n`
+		// 			);
+		// 		})
+		// 		.join("");
+		// }
+		
+		
+		
+		// DEBUGGER
+		const pickr = this.pickr;
+		pickr
+			.on("init", (instance) => {
+				console.log("init", instance);
+			})
+			.on("hide", (instance) => {
+				console.log("hide", instance);
+			})
+			.on("show", (color, instance) => {
+				console.log("show", color, instance);
+			})
+			.on("save", (color, instance) => {
+				console.log("save", color, instance);
+			})
+			.on("clear", (instance) => {
+				console.log("clear", instance);
+			})
+			.on("change", (color, instance) => {
+				console.log("change", color, instance);
+			})
+			.on("changestop", (instance) => {
+				console.log("changestop", instance);
+			})
+			.on("cancel", (instance) => {
+				console.log("cancel", instance);
+			})
+			.on("swatchselect", (color, instance) => {
+				console.log("swatchselect", color, instance);
+			});
+			
+			
+			
+			
+			
+			    "cstart": "parcel index.html && npm run build && npm-run-all --parallel watch:*",
+    "watch:css": "onchange \"src/scss/**/*.scss\" -- npm run build:css",
+    "watch:html": "onchange \"src/pug/**/*.pug\" -- npm run build:html",
+    "watch:js": "onchange \"src/js/**/*.js\" -- npm run build:js",
+    "watch:serve": "browser-sync --server \"dist/\" start --files \"**/*.html\" \"**/*.css\" \"**/*.js\"",
+    "build:html": "pug --output-style compressed -o dist/ src/pug/index.pug",
+    "build:css": "mkdirp dist/css && node-sass --output-style compressed --include-path scss --include-path node_modules \"src/scss/main.scss\" \"dist/css/main.css\"",
+    "build:js": "mkdirp dist/js && ncp src/js dist/js",
+    "build:images": "mkdirp dist/assets && node tasks/resizeImages.js 'assets/**/*.jpg' 'dist/assets' && imagemin dist/assets/**/* --out-dir=dist/assets",

@@ -1,0 +1,35 @@
+mixin palette
+	.palette.container.container--wide.container--flex-col(data-format="hexa")
+		.palette__top
+			.row.palette__header
+				each family, index in FAMILIES
+					.column(class=`${index == 0 ? 'column-offset-5' : ''}`)= family
+			.row.palette__subheader
+				each family, index in FAMILIES
+					each member in MEMBERS
+						.column(class=`${index == 0 && member != 'weak' ? 'column-offset-5' : ''}`)= member
+
+		.palette__body
+			each element in ELEMENTS
+				.row.palette__group(data-element=element)
+					.palette__group-header
+						.palette__group-icon
+							svg(width="40", height="40")
+								- var path = 'icons/' + element + '.svg';
+								use(href=path)
+						.palette__group-title= element
+					.column.overflow-visible
+						.palette__group-items.no-fold
+							each family in FAMILIES
+								.palette__family(data-family=family)
+									each shift in SHIFTS
+										.palette__shift(data-shift=shift)
+											each member in MEMBERS
+												.palette__item(
+													class=`${shift !== '' ? 'palette__item--small' : ''}`,
+													data-family=family,
+													data-shift=shift,
+													data-element=element,
+													data-member=member,
+													data-action=SET_ACTIVE_PALETTE_ITEM
+												)

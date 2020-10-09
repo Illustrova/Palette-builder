@@ -1,0 +1,68 @@
+.locked-field {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+
+	width: 100%;
+	min-width: 15rem;
+	max-width: 60rem;
+	// margin-bottom: 1.5rem;
+	input.locked-field__input {
+		position: relative;
+
+		border-color: $color-tertiary; //override miligram
+	}
+
+	&__input {
+		margin-bottom: 0;
+
+		opacity: 1;
+
+		&:disabled {
+			border-color: $color-tertiary;
+			// color: $color-tertiary;
+			opacity: 0.7;
+		}
+	}
+
+	&__button {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+
+		height: 100%;
+		margin-bottom: 0;
+
+		color: $color-tertiary;
+
+		.icon-lock {
+			display: none;
+
+			// fill: $color-tertiary;
+			fill: $color-primary;
+		}
+
+		.icon-unlock {
+			display: block;
+
+			fill: $color-tertiary;
+		}
+
+		@include on-event() {
+			svg {
+				fill: $color-secondary;
+			}
+		}
+	}
+
+	&__input:disabled + &__button {
+		.icon-lock {
+			display: block;
+		}
+
+		.icon-unlock {
+			display: none;
+		}
+	}
+}

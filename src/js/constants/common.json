@@ -1,0 +1,31 @@
+{
+	"COLORFORMATS": ["hexa", "rgba", "hsla"],
+	"FILEFORMATS": ["json", "scss", "sass", "styl", "css"],
+	"FAMILIES": [
+			"base",
+			"faint",
+			"accent",
+			"complimentary",
+			"critical",
+			"warning",
+			"success"
+		],
+	"MEMBERS": [
+			"strong",
+			"weak"
+		],
+	"ELEMENTS": [
+			"back",
+			"text",
+			"line",
+			"icon",
+			"fancy"
+		],
+	"SHIFTS": [
+			"up",
+			"",
+			"down"
+		],
+		"VARIABLE_NAME_SEPARATOR": "-"
+
+}

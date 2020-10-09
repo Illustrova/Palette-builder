@@ -1,0 +1,5 @@
+mixin button-icon(name)
+	button.button.button-icon&attributes(attributes)
+		svg(width="40", height="40")
+			- let path = 'icons/' + name + '.svg';
+			use(href=path)

@@ -1,0 +1,52 @@
+.button-group {
+	position: relative;
+
+	&:focus {
+		outline: solid 1 px red;
+	}
+
+	& > .button {
+		margin-bottom: 0;
+
+		border-right-width: 0;
+		border-radius: 0;
+
+		@include respond-to("small") {
+			@include button-small();
+		}
+
+		&:first-of-type {
+			border-top-left-radius: 1rem;
+			border-bottom-left-radius: 1rem;
+		}
+
+		&:last-of-type {
+			border-right-width: 0.1rem;
+			border-top-right-radius: 1rem;
+			border-bottom-right-radius: 1rem;
+		}
+	}
+
+	input[type="radio"]:checked + label.button {
+		color: white;
+
+		background-color: $color-primary;
+	}
+
+	input[type="radio"]:focus + label.button {
+		background-color: $color-secondary;
+
+		&:after {
+			position: absolute;
+			top: -3px;
+			right: -3px;
+			bottom: -3px;
+			left: -3px;
+			z-index: -1;
+
+			border: dashed 1px $color-primary;
+			border-radius: 1rem;
+			content: "";
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"SET_COLOR": "set_color",
+	"SET_COLOR_IN_PALETTE": "set_color_in_palette",
+	"RESET_COLOR": "reset_color",
+	"SET_ACTIVE_PALETTE_ITEM": "set_active_palette_item",
+	"RESET_ACTIVE_PALETTE_ITEM": "reset_active_palette_item",
+	"SET_COLOR_FORMAT": "set_color_format",
+	"PALETTE_EXPORT": "palette_export",
+	"EXPORTER_CREATE_OUTPUT": "exporter_create_output",
+	"MODAL_SHOW_OUTPUT": "modal_show",
+	"MODAL_HIDE": "modal_hide",
+	"MODAL_SHOW_ERROR": "modal_show_error",
+	"COPY_OUTPUT": "copy_output",
+	"SAVE_OUTPUT": "save_output",
+	"TOGGLE_DISABLED": "toggle_disabled",
+	"TOGGLE_COLLAPSIBLE": "toggle_collapsible",
+	"CHANGE_OPTIONS": "change_options",
+	"CHANGE_FILENAME": "change_filename",
+	"IMPORT_FILE": "import_file",
+	"SETUP_PALETTE": "setup_palette",
+	"RESET_PALETTE": "reset_palette"
+}

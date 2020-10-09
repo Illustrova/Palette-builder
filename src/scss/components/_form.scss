@@ -1,0 +1,34 @@
+.form {
+	margin: 0.5rem;
+	padding: 1em 0;
+
+	&__group {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
+
+	&__item {
+		display: inline-flex;
+		margin-bottom: 1rem;
+	}
+
+	&__label {
+		margin: 0 1em 0.5rem;
+
+		font-weight: normal;
+		font-size: 1.6rem;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	input {
+		width: auto;
+		margin-bottom: 0;
+
+		border-color: $color-tertiary;
+	}
+}

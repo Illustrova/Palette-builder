@@ -1,0 +1,73 @@
+.button {
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+
+	svg {
+		max-height: 100%;
+		padding: 0 0.75em;
+
+		color: inherit;
+
+		pointer-events: none;
+		fill: white;
+	}
+
+	&-outline,
+	&-clear {
+		svg {
+			fill: currentColor;
+		}
+	}
+
+	&-icon {
+		margin-bottom: 0;
+		padding: 0 0.5em;
+	}
+
+	&--small {
+		@include button-small();
+	}
+
+	&--link {
+		display: inline;
+		width: 100%;
+		height: auto;
+		margin-bottom: 0;
+
+		padding: 0;
+
+		color: $color-secondary;
+
+		font-size: 1em;
+		line-height: initial;
+		letter-spacing: normal;
+		text-align: left;
+
+		background: transparent;
+		border: none;
+		cursor: pointer;
+
+		@include on-event() {
+			color: $color-primary;
+
+			background-color: transparent;
+			border-color: transparent;
+		}
+	}
+}
+
+input:focus {
+	& + .button {
+		color: #ffffff;
+
+		background-color: $color-secondary;
+		outline: 0;
+
+		&.button-outline,
+		&.button-clear {
+			color: $color-secondary;
+
+			background: transparent;
+		}
+	}
+}

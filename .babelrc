@@ -1,0 +1,30 @@
+{
+	"plugins": [
+		
+			"@babel/plugin-syntax-throw-expressions",
+		
+		[
+			"prismjs",
+			{
+				"languages": [
+					"scss",
+					"sass",
+					"less",
+					"css",
+					"css-extras",
+					"stylus",
+					"json",
+					"jsonp",
+					"json5"
+				],
+				"plugins": [
+					"show-invisibles",
+					"normalize-whitespace"
+				],
+				"theme": "default",
+				"css": true
+			}
+		]
+	]
+}
+

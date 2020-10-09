@@ -1,0 +1,60 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/**
+ * Hide element while making it readable for screen readers
+ * Shamelessly borrowed from HTML5Boilerplate:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+ */
+.sr-only {
+	position: absolute;
+
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+
+	border: 0;
+
+	clip: rect(0 0 0 0);
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
+.no-fold {
+	display: block;
+
+	@include respond-to("small") {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.container--flex-col {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+// Overrides Miligram
+.row .column {
+	padding: 0;
+	overflow: auto;
+}
+
+.row .column.column-offset-5 {
+	margin-left: 5%;
+}
+
+.overflow-visible {
+	/* stylelint-disable-next-line */
+	overflow: visible !important;
+}
+
+.container--wide {
+	max-width: 180rem;
+}

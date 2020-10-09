@@ -1,0 +1,30 @@
+{
+	"css": {
+		"variablePrefix": "--",
+		"lineEnding": ";",
+		"braceOpen": "{",
+		"braceClose": "}",
+		"assignmentOperator": ": "
+	},
+	"scss": {
+		"variablePrefix": "$",
+		"lineEnding": ";",
+		"braceOpen": "{",
+		"braceClose": "}",
+		"assignmentOperator": ": "
+	},
+	"sass": {
+		"variablePrefix": "$",
+		"lineEnding": "",
+		"braceOpen": "",
+		"braceClose": "",
+		"assignmentOperator": ": "
+	},
+	"styl": {
+		"variablePrefix": "$",
+		"lineEnding": "",
+		"braceOpen": "",
+		"braceClose": "",
+		"assignmentOperator": " = "
+	}
+}

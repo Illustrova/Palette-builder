@@ -1,0 +1,46 @@
+.switch {
+	position: relative;
+
+	display: inline-block;
+
+	/* The slider */
+	&__slider {
+		width: 6rem;
+		height: 3rem;
+		padding: 0.2rem;
+
+		background-color: $color-tertiary;
+		border-radius: 3rem;
+		cursor: pointer;
+
+		transition: background-color 250ms ease 0s;
+
+		&:before {
+			display: block;
+			width: 2.6rem;
+			height: 2.6rem;
+
+			background-color: #ffffff;
+			border-radius: 50%;
+
+			transition: transform 250ms ease 0s;
+			content: "";
+		}
+
+		input:checked + & {
+			background-color: $color-primary;
+		}
+
+		input:focus + & {
+			box-shadow: 0 0 1px $color-primary;
+		}
+
+		input:checked + &:before {
+			transform: translateX(3rem);
+		}
+
+		input:disabled + .slider {
+			opacity: 0.25;
+		}
+	}
+}

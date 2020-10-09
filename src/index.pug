@@ -1,0 +1,42 @@
+include pug/components/button.pug
+include pug/components/locked-field.pug
+include pug/components/nav.pug
+include pug/components/modal.pug
+include pug/components/palette.pug
+
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		title NPM scripts starter by Irina Illustrova
+		meta(name="description", content="fill it with your project description")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		base(href="/")
+		//- Fonts -//
+		link(
+			href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap",
+			rel="stylesheet"
+		)
+	body
+		//- SVG assets which is not bundled with parcel-svg-sprite plugin -//
+		include ./icons/gradient.svg
+		header.header
+			+nav
+		main.content-wrapper
+			+palette
+		footer.footer Based on&nbsp;
+			a(
+				href="https://medium.com/@opium.pro/standardisation-of-color-schemes-through-the-eyes-of-a-programmer-53cc25148470",
+				target="_blank",
+				rel="noopener"
+			) opium-fill
+			| &nbsp;color scheme standartization method by&nbsp;
+			a(href="https://opium.pro/", target="_blank", rel="noopener") Denis Elianovsky
+			| . Built by&nbsp;
+			a(href="https://illustrova.github.io/", target="_blank", rel="noopener") Irina Illustrova
+		.colorpicker
+			.colorpicker__container
+				.colorpicker__hidden.sr-only
+		+modal
+		script(src="js/index.js")
