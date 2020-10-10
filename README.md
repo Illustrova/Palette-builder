@@ -13,21 +13,14 @@ This is a quick tool I wrote for myself to create, import and export palette fol
 - SCSS
 - Vanilla JS
 - [Parcel](https://parceljs.org/) bundler
-As a prerequisite it's assumed you have `npm/yarn` installed.
 
-1. Clone the repo
+### Parcel build process notes
 
-        git clone https://github.com/Illustrova/npm-scripts-starter.git .
+For a reason, build process consists of 3 tasks:
 
-2. Install dependencies
-
-        npm install
-
-3. Start server
-
-        npm start
-
-4. Enjoy!
+- `Clean:prebuild` just removes previously built content
+- `build:parcel` is a main build process with necessary flags
+- `clean:postbuild` is rather dirty but unavoidable hack to deal with parcel-scg-sprite-plugin, which leaves a bunch of empty svg and useless js files as a leftover (see [#9](https://github.com/Epimodev/parcel-plugin-svg-sprite/issues/9)). This task just removes them based on glob expression
 
 ## License
 

@@ -5,9 +5,12 @@
   "main": "index.pug",
   "scripts": {
     "start": "parcel src/*.pug --no-cache --no-source-maps -d ./dist/dev/",
-    "build": "parcel build src/*.pug -d ./dist/prod/",
-    "deploy": "gh-pages -d dist"
-  },
+		"build:parcel": "parcel build src/*.pug -d ./dist/prod/ --no-content-hash --no-source-maps --public--url /palette-builder",
+		"deploy": "gh-pages -d dist",
+		"clean:prebuild": "trash ./dist/prod",
+		"clean:postbuild": "trash './dist/prod/!(*00a46daa*|*index*)'",
+		"build": "npm run clean:prebuild && npm run build:parcel && npm run clean:postbuild"
+	},
   "author": "Irina Illustrova",
 	"license": "MIT",
 	"svgSpriteOptions": {
@@ -55,11 +58,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Illustrova/npm-scripts-starter.git"
+    "url": "git+https://github.com/Illustrova/Palette-builder.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/Illustrova/npm-scripts-starter/issues"
+    "url": "https://github.com/Illustrova/Palette-builder/issues"
   },
-  "homepage": "https://github.com/Illustrova/npm-scripts-starter#readme"
+  "homepage": "https://github.com/Illustrova/Palette-builder#readme"
 }
