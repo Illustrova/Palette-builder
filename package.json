@@ -5,11 +5,11 @@
   "main": "index.pug",
   "scripts": {
     "start": "parcel src/*.pug --no-cache --no-source-maps -d ./dist/dev/",
-		"build:parcel": "parcel build src/*.pug -d ./dist/prod/ --no-content-hash --no-source-maps --public--url /palette-builder",
-		"deploy": "gh-pages -d dist",
+		"build:parcel": "parcel build src/*.pug -d ./dist/prod/ --no-content-hash --no-source-maps --public-url /Palette-builder",
 		"clean:prebuild": "trash ./dist/prod",
 		"clean:postbuild": "trash './dist/prod/!(*00a46daa*|*index*)'",
-		"build": "npm run clean:prebuild && npm run build:parcel && npm run clean:postbuild"
+		"build": "npm run clean:prebuild && npm run build:parcel && npm run clean:postbuild",
+		"deploy": "gh-pages -d dist/prod"
 	},
   "author": "Irina Illustrova",
 	"license": "MIT",
