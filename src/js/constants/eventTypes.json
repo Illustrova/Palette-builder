@@ -18,5 +18,9 @@
 	"CHANGE_FILENAME": "change_filename",
 	"IMPORT_FILE": "import_file",
 	"SETUP_PALETTE": "setup_palette",
-	"RESET_PALETTE": "reset_palette"
+	"RESET_PALETTE": "reset_palette",
+	"STORAGE_ADD": "add_to_storage",
+	"STORAGE_REMOVE": "remove_from_storage",
+	"STORAGE_CLEAR": "clear_storage",
+	"STORAGE_IMPORT": "import_from_storage"
 }

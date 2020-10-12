@@ -11,6 +11,7 @@ import EventEmitter from "./lib/EventEmitter";
 import ActionCreator from "./lib/ActionCreator";
 import Importer from "./lib/Importer";
 import Exporter from "./lib/Exporter";
+import StorageManager from "./lib/StorageManager";
 
 import Modal from "./components/Modal";
 import ColorPicker from "./components/ColorPicker";
@@ -42,4 +43,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	/** Activate import and export functionality */
 	const importer = new Importer(eventEmitter, Prism);
 	const exporter = new Exporter(eventEmitter);
+	const storageManager = new StorageManager(eventEmitter);
 });

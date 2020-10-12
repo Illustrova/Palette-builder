@@ -87,12 +87,6 @@ class ColorPicker {
 	 *
 	 */
 	setupPickrListeners() {
-		this.pickr.on("change", (color) => {
-			if (color) {
-				this._events.emit(E.SET_COLOR_IN_PALETTE, this.getColorValues(color));
-			}
-		});
-
 		this.pickr.on("save", (color) => {
 			// Save new color even if the user didn't change the preset value
 			if (color) {
@@ -131,7 +125,12 @@ class ColorPicker {
 	 * @param {string} colorString
 	 */
 	setColor(colorString) {
-		this.pickr.setColor(colorString, true);
+		console.log("ColorPicker -> setColor -> colorString", colorString);
+		this.pickr.setColor(colorString);
+		this._events.emit(
+			E.SET_COLOR_IN_PALETTE,
+			this.getColorValues(this.pickr._color)
+		);
 	}
 
 	/**

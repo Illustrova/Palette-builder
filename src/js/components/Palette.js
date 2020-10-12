@@ -39,43 +39,69 @@ class Palette {
 		});
 
 		this._events.on(E.SET_COLOR_IN_PALETTE, (colorObj) => {
-			this.setColor(colorObj, this.activeItem);
+			this.setColorToItem(colorObj, this.activeItem);
 		});
-		this._events.on(E.RESET_COLOR, () => this.resetColor(this.activeItem));
+		this._events.on(E.RESET_COLOR, () =>
+			this.resetColorToItem(this.activeItem)
+		);
 		this._events.on(E.SET_COLOR_FORMAT, ({ data }) =>
 			this.setColorFormat(data)
 		);
-		this._events.on(E.SETUP_PALETTE, (data) => this.setupPalette(data));
+		this._events.on(E.SETUP_PALETTE, (data) => this.loadPalette(data));
 		this._events.on(E.RESET_PALETTE, () => this.resetPalette());
 
 		this._events.on(E.PALETTE_EXPORT, ({ data }) => this.sendToExport(data));
+		this._events.on(E.STORAGE_IMPORT, (data) =>
+			this.loadPaletteFromStorage(data)
+		);
 	}
 
 	/**
-	 * Create palette from imported data
+	 * Load palette from imported data
 	 *
 	 * @param {object} data
 	 */
-	setupPalette(data) {
+	loadPalette(data) {
 		let currentItem = this.activeItem; // Save currently active item
 		Object.entries(data).forEach(([element, elementVal]) =>
 			Object.entries(elementVal).forEach(([family, familyVal]) =>
 				Object.entries(familyVal).forEach(([memberShift, color]) => {
 					const member = memberShift.split(C.VARIABLE_NAME_SEPARATOR)[0];
 					const shift = memberShift.split(C.VARIABLE_NAME_SEPARATOR)[1];
-					const item = this.el.querySelector(
-						`[data-element='${element}'][data-family='${family}'][data-member='${member}']${
-							shift ? "[data-shift='" + shift + "']" : ""
-						}`
-					);
-					this.activeItem = item;
-					this._events.emit(E.SET_COLOR, color);
+					this.loadColor(element, family, member, shift, color);
 				})
 			)
 		);
 		this.activeItem = currentItem; //set back currently active item
 	}
 
+	/**
+	 * Load paltte from LocalStorage data object
+	 *
+	 * @param {object} data
+	 */
+	loadPaletteFromStorage(data) {
+		Object.entries(data).forEach(([key, color]) => {
+			var [element, family, member, shift] = [...key.split("-")];
+			this.loadColor(element, family, member, shift, color);
+		});
+	}
+
+	/**
+	 * Load a single color into palette
+	 *
+	 * @param {string} element, family, member, shift
+	 * @param {string} color
+	 */
+	loadColor(element, family, member, shift, color) {
+		const item = this.el.querySelector(
+			`[data-element='${element}'][data-family='${family}'][data-member='${member}']${
+				shift ? "[data-shift='" + shift + "']" : "[data-shift='']"
+			}`
+		);
+		this.activeItem = item;
+		this._events.emit(E.SET_COLOR, color);
+	}
 	/**
 	 * Prepare palette data for export
 	 *
@@ -104,7 +130,7 @@ class Palette {
 	 */
 	resetPalette() {
 		let selectedPalette = this.getPaletteItems();
-		[...selectedPalette].forEach((item) => this.resetColor(item));
+		[...selectedPalette].forEach((item) => this.resetColorToItem(item));
 	}
 
 	/**
@@ -124,7 +150,7 @@ class Palette {
 	 */
 	getPaletteItems() {
 		return [...this.paletteItems].filter((item) => {
-			return item.dataset.colorHexa;
+			return item.dataset.colorHexa; // has any of data-color values set
 		});
 	}
 
@@ -134,7 +160,7 @@ class Palette {
 	 * @param {string} color
 	 * @param {HTMLElement} item
 	 */
-	setColor(color, item) {
+	setColorToItem(color, item) {
 		let colorToInvert =
 			color.hexa.length !== 7 ? color.hexa.substring(0, 7) : color.hexa;
 		let invertedColor;
@@ -151,6 +177,12 @@ class Palette {
 			item.dataset.colorRgba = color.rgba;
 			item.dataset.colorHsla = color.hsla;
 		}
+		const { element, family, member, shift } = item.dataset;
+		this._events.emit(
+			E.STORAGE_ADD,
+			`${element}-${family}-${member}${shift ? "-" + shift : ""}`,
+			color.rgba
+		);
 	}
 
 	/**
@@ -158,7 +190,7 @@ class Palette {
 	 *
 	 * @param {HTMLElement} item
 	 */
-	resetColor(item) {
+	resetColorToItem(item) {
 		if (item) {
 			item.style.backgroundColor = "";
 			item.style.color = "";
@@ -166,6 +198,11 @@ class Palette {
 			item.dataset.colorRgba = "";
 			item.dataset.colorHsla = "";
 		}
+		const { element, family, member, shift } = item.dataset;
+		this._events.emit(
+			E.STORAGE_REMOVE,
+			`${element}-${family}-${member}${shift ? "-" + shift : ""}`
+		);
 	}
 
 	/**
