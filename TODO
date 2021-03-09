@@ -3,7 +3,7 @@ Todo:
   ☐ Activate buttons on enter
   ✔ clear palette i navbar @done(20-10-02 11:59)
 	☐ Promt to clear palette on import
-	☐ test import named colors, short hex
+	✔ test impot named colors, short hex @done(20-10-11 17:53)
 	☐ save l0calstorage ask before closing page
 	Add main color row
 	✔ HAndle parsing/import errors (no vars, unreadable file etc) @done(20-10-02 11:59)
