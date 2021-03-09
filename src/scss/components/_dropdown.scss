@@ -16,7 +16,6 @@
 		top: 100%;
 		z-index: 1;
 
-		display: block;
 		width: 100%;
 		height: auto;
 		max-height: 0;
@@ -68,10 +67,18 @@
 
 	.dropdown__list:hover,
 	.dropdown__list:focus,
+	.dropdown__list:focus-within,
 	.dropdown__list:active,
-	.dropdown__button:hover + .dropdown__list {
+	.dropdown__button:hover + .dropdown__list,
+	.dropdown__button:focus + .dropdown__list,
+	.dropdown__button:focus-within + .dropdown__list {
+		// display: block;
 		max-height: 800px;
 
 		border-color: $color-tertiary;
+	}
+
+	.dropdown__list:focus-within * {
+		// display: block;
 	}
 }

@@ -21,6 +21,18 @@
 	clip: rect(0 0 0 0);
 }
 
+.skip-link {
+	padding: 0.5em;
+  position: absolute;
+	transform: translateX(-100%);
+	bottom: 0;
+	left: 0;
+}
+
+.skip-link:focus {
+  transform: translateY(0%);
+}
+
 .no-scroll {
 	overflow: hidden;
 }

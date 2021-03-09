@@ -1,6 +1,6 @@
 mixin palette
 	.palette.container.container--wide.container--flex-col(data-format="hexa")
-		.palette__top
+		header.palette__top
 			.row.palette__header
 				each family, index in FAMILIES
 					.column(class=`${index == 0 ? 'column-offset-5' : ''}`)= family
@@ -11,7 +11,11 @@ mixin palette
 
 		.palette__body
 			each element in ELEMENTS
-				.row.palette__group(data-element=element)
+				section.row.palette__group(
+					role="contentinfo",
+					aria-label=element,
+					data-element=element
+				)
 					.palette__group-header
 						.palette__group-icon
 							svg(width="40", height="40")
@@ -26,10 +30,10 @@ mixin palette
 										.palette__shift(data-shift=shift)
 											each member in MEMBERS
 												.palette__item(
-													class=`${shift !== '' ? 'palette__item--small' : ''}`,
 													data-family=family,
 													data-shift=shift,
 													data-element=element,
 													data-member=member,
-													data-action=SET_ACTIVE_PALETTE_ITEM
+													data-action=SET_ACTIVE_PALETTE_ITEM,
+													tabindex="0"
 												)

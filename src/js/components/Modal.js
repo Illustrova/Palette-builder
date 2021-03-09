@@ -70,6 +70,7 @@ class Modal {
 	show() {
 		this.el.classList.add(CN.MODAL_SHOW);
 		document.body.classList.add(CN.NO_SCROLL);
+		this.el.focus();
 	}
 
 	/**

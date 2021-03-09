@@ -8,7 +8,7 @@ doctype html
 html(lang="en")
 	head
 		meta(charset="UTF-8")
-		title NPM scripts starter by Irina Illustrova
+		title Palette Builder
 		meta(name="description", content="fill it with your project description")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
@@ -22,7 +22,7 @@ html(lang="en")
 		//- SVG assets which is not bundled with parcel-svg-sprite plugin -//
 		include ./icons/gradient.svg
 		header.header
-			+nav
+			+nav#nav
 		main.content-wrapper
 			+palette
 		footer.footer Based on&nbsp;
@@ -39,4 +39,6 @@ html(lang="en")
 			.colorpicker__container
 				.colorpicker__hidden.sr-only
 		+modal
+		//- Skip link here also serves on purpose not to have colorpicker as a last tabbable element - this way we can catch and redirect focus from colorpicker - see colorpicker.js init() method
+		a.skip-link(href="#nav") Back to navbar
 		script(src="js/index.js")

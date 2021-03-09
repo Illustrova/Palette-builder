@@ -1,5 +1,4 @@
 import * as E from "../constants/eventTypes.json";
-
 /**
  * Input component
  *
@@ -33,7 +32,12 @@ class Input {
 	 * @param {HTMLElement} target
 	 */
 	toggleDisabled(target) {
-		if (this.el.matches(target)) this.el.disabled = !this.el.disabled;
+		if (this.el.matches(target)) {
+			this.el.disabled = !this.el.disabled;
+			if (!this.el.disabled) {
+				this.el.select();
+			}
+		}
 	}
 }
 

@@ -16,6 +16,7 @@ class Collapsible {
 		this.el = el;
 		this._events = emitter;
 		this.init();
+		this.isShown = false;
 	}
 
 	/**
@@ -35,6 +36,7 @@ class Collapsible {
 	 */
 	toggleCollapsible(targetId) {
 		if (this.el.id === targetId) return;
+		this.isShown = !this.isShown;
 		this.el.classList.toggle(CN.COLLAPSIBLE_SHOW);
 	}
 }

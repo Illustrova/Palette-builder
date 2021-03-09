@@ -54,13 +54,29 @@ class ColorPicker {
 		this.setupPickrListeners();
 
 		this._events.on(E.SET_COLOR, (colorString) => this.setColor(colorString));
-		this._events.on(E.SET_ACTIVE_PALETTE_ITEM, ({ trigger }) =>
-			this.show(trigger)
-		);
+		this._events.on(E.SET_ACTIVE_PALETTE_ITEM, ({ trigger }) => {
+			this.show(trigger);
+		});
 		this._events.on(E.RESET_ACTIVE_PALETTE_ITEM, () => this.hide());
+		this._events.on(E.COLORPICKER_HIDE, () => this.hide());
+		this._events.on(E.COLORPICKER_SHOW, (item) => this.show(item));
 		this._events.on(E.SET_COLOR_FORMAT, ({ data }) =>
 			this.changeColorFormat(data)
 		);
+
+		this.el.addEventListener("keydown", (e) => {
+			if (!e.code === "Tab") return;
+			this.el.addEventListener(
+				"focusout",
+				({ relatedTarget }) => {
+					if (!this.el.contains(relatedTarget)) {
+						this._events.emit(E.SET_NEXT_FOCUSED_ITEM);
+						this._events.emit(E.COLORPICKER_HIDE);
+					}
+				},
+				{ once: true }
+			);
+		});
 	}
 
 	/**
@@ -98,6 +114,36 @@ class ColorPicker {
 		this.pickr.on("clear", () => {
 			this._events.emit(E.RESET_COLOR);
 		});
+
+		// const pickr = this.pickr;
+		// pickr
+		// 	.on("init", (instance) => {
+		// 		console.log("init", instance);
+		// 	})
+		// 	.on("hide", (instance) => {
+		// 		console.log("hide", instance);
+		// 	})
+		// 	.on("show", (color, instance) => {
+		// 		console.log("show", color, instance);
+		// 	})
+		// 	.on("save", (color, instance) => {
+		// 		console.log("save", color, instance);
+		// 	})
+		// 	.on("clear", (instance) => {
+		// 		console.log("clear", instance);
+		// 	})
+		// 	.on("change", (color, instance) => {
+		// 		console.log("change", color, instance);
+		// 	})
+		// 	.on("changestop", (instance) => {
+		// 		console.log("changestop", instance);
+		// 	})
+		// 	.on("cancel", (instance) => {
+		// 		console.log("cancel", instance);
+		// 	})
+		// 	.on("swatchselect", (color, instance) => {
+		// 		console.log("swatchselect", color, instance);
+		// 	});
 	}
 
 	/**
@@ -108,7 +154,9 @@ class ColorPicker {
 		if (item.dataset.colorHexa) {
 			this.setColor(item.dataset[`color${capitalize(this.colorFormat)}`]);
 		}
+
 		this.pickr.show();
+		this.pickr._root.interaction.result.select();
 	}
 
 	/**
@@ -125,7 +173,6 @@ class ColorPicker {
 	 * @param {string} colorString
 	 */
 	setColor(colorString) {
-		console.log("ColorPicker -> setColor -> colorString", colorString);
 		this.pickr.setColor(colorString);
 		this._events.emit(
 			E.SET_COLOR_IN_PALETTE,

@@ -3,9 +3,13 @@
 	max-height: 0;
 	overflow: hidden;
 
+	visibility: hidden;
+
 	transition: all 0.35s ease;
 
 	&--shown {
 		max-height: 50rem;
+
+		visibility: visible;
 	}
 }

@@ -4,6 +4,7 @@
 	"INPUT": "input",
 	"COLLAPSIBLE": "collapsible",
 	"PALETTE": "palette",
+	"PALETTE_ITEM": "palette__item",
 	"PALETTE_ITEM_ACTIVE": "palette__item--active",
 	"COLORPICKER": "colorpicker",
 	"MODAL_HEADER": "modal__header",

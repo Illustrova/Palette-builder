@@ -1,12 +1,12 @@
 include ./button.pug
 
 mixin modal
-	.modal(data-action=MODAL_HIDE)&attributes(attributes)
+	.modal(data-action=MODAL_HIDE, tabindex="-1", role="dialog")&attributes(attributes)
 		.modal__body.modal__body--error
 			.modal__message
 				.modal__heading Nothing to export yet :(
 				.modal__text Add some colors to your palette first.
-			button.modal__button.button(data-action=MODAL_HIDE) OK
+			button.modal__button.button(data-action=MODAL_HIDE, type="button") OK
 		.modal__body
 			.modal__header.nav
 				.nav__group.nav__group--left

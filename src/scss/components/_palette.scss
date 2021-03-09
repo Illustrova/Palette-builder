@@ -224,9 +224,16 @@
 			}
 		}
 
-		&--active {
+		&--active,
+		&:active {
 			border: solid 1px $color-primary;
+			outline: none;
 			box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4);
+		}
+
+		&:focus {
+			border-color: $color-primary;
+			outline: none;
 		}
 
 		&[data-color-hexa^="#"] {
@@ -240,7 +247,7 @@
 			left: 0;
 
 			width: 100%;
-			// font-weight: bold;
+
 			letter-spacing: 0.1rem;
 
 			text-align: center;

@@ -25,7 +25,7 @@ class Palette {
 		this.activeItem = null;
 		this.colorFormat = "hexa";
 		this.fileformat = "json";
-		this.paletteItems = el.querySelectorAll(".palette__item");
+		this.paletteItems = el.querySelectorAll(`.${CN.PALETTE_ITEM}`);
 		this.init();
 	}
 
@@ -36,6 +36,13 @@ class Palette {
 	init() {
 		this._events.on(E.SET_ACTIVE_PALETTE_ITEM, ({ trigger }) => {
 			this.setActiveItem(trigger);
+		});
+		this._events.on(E.SET_NEXT_FOCUSED_ITEM, () => {
+			let nextItem = this.paletteItems.item(
+				Array.prototype.indexOf.call(this.paletteItems, this.activeItem) + 1
+			);
+
+			this.setFocusedItem(nextItem);
 		});
 
 		this._events.on(E.SET_COLOR_IN_PALETTE, (colorObj) => {
@@ -54,8 +61,34 @@ class Palette {
 		this._events.on(E.STORAGE_IMPORT, (data) =>
 			this.loadPaletteFromStorage(data)
 		);
+
+		this.el.addEventListener("keydown", (event) =>
+			this.resolveKeyboardEvent(event)
+		);
 	}
 
+	/**
+	 * Resolve keyboard interaction with palette items
+	 *
+	 * @param {string} keycode
+	 * @param {string} item
+	 */
+	resolveKeyboardEvent(e) {
+		const item = e.target;
+		const keycode = e.code;
+		// e.preventDefault();
+
+		// e.stopImmediatePropagation();
+		if (!item || !item.classList.contains(CN.PALETTE_ITEM)) return;
+		console.log("resolveKeyboardEvent -> keycode", keycode);
+		if (keycode === "Enter") {
+			this.setActiveItem(item);
+			this._events.emit(E.COLORPICKER_SHOW, item);
+		}
+		if (keycode === "Esc") {
+			this._events.emit(E.COLORPICKER_HIDE);
+		}
+	}
 	/**
 	 * Load palette from imported data
 	 *
@@ -214,6 +247,15 @@ class Palette {
 		this.activeItem && this.activeItem.classList.remove(CN.PALETTE_ITEM_ACTIVE);
 		item.classList.add(CN.PALETTE_ITEM_ACTIVE);
 		this.activeItem = item;
+	}
+
+	/**
+	 * Set focus on an item
+	 *§§
+	 * @param {HTMLElement} item
+	 */
+	setFocusedItem(item) {
+		item ? item.focus() : this.activeItem.focus();
 	}
 }
 

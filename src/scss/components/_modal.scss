@@ -71,6 +71,7 @@
 
 	&__settings {
 		flex-grow: 1;
+    min-height: 14rem;
 
 		@include respond-to("small") {
 			flex-basis: 100%;

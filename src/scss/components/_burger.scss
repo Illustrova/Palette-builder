@@ -1,5 +1,4 @@
 // Code from: https://lukyvj.github.io/menu-to-cross-icon/
-
 .burger {
 	display: none;
 	width: 2.8rem;
@@ -58,5 +57,13 @@
 		&:hover {
 			transform: scale(0.9) rotate(180deg);
 		}
+	}
+}
+//override miligram
+input.burger-checkbox {
+	display: none; // no focus
+
+	@include respond-to("small") {
+		display: inline;
 	}
 }

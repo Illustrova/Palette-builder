@@ -87,8 +87,8 @@ class Exporter {
 	/**
 	 * Emit show output event
 	 *
-	 * @param {*} fileformat
-	 * @param {*} colorFormat
+	 * @param {string} fileformat
+	 * @param {string} colorFormat
 	 */
 	displayOutput(fileformat, colorFormat) {
 		this._events.emit(
